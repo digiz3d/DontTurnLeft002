@@ -7,11 +7,12 @@ public class BlockScript : MonoBehaviour
 {
 
     [SerializeField] private Transform endPoint;
+    [SerializeField] private Vector3[] tracksPositions;
 
     // Use this for initialization
     void Start()
     {
-
+        //tracksPositions = transform.Find("turns");
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class BlockScript : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(endPoint.position, 0.9f);
-        /*
+        
         foreach (Vector3 temp in tracksPositions)
         {
             Vector3 v = new Vector3(temp.x, 0, temp.z);
@@ -45,7 +46,7 @@ public class BlockScript : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(newDirection, 0.05f);
         }
-        */
+        
     }
 
     public Vector3 GetStartPoint()

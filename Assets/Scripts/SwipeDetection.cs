@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SwipeDetection : MonoBehaviour {
+public class SwipeDetection : MonoBehaviour
+{
     [SerializeField] private float threshold;
 
     [SerializeField] private Text lastSwipedText;
@@ -15,13 +16,15 @@ public class SwipeDetection : MonoBehaviour {
     private float lastTouch = 0f;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         Application.targetFrameRate = 60;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (Time.time - lastTouch > 1f)
         {
@@ -29,11 +32,19 @@ public class SwipeDetection : MonoBehaviour {
             lastSwipedText.text = "";
         }
 
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            choice = Input.GetKeyUp(KeyCode.LeftArrow) ? "left" : "right";
+            lastSwipedText.text = choice;
+            lastTouch = Time.time;
+        }
+
+
         if (Input.touchCount > 0)
         {
             Touch t = Input.GetTouch(0);
 
-            switch(t.phase)
+            switch (t.phase)
             {
                 case TouchPhase.Began:
                     startPosition = t.position;
@@ -62,8 +73,8 @@ public class SwipeDetection : MonoBehaviour {
                     break;
             }
         }
-		
-	}
+
+    }
 
     void SetXPos(float x)
     {
